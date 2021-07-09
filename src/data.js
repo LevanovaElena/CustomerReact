@@ -61,4 +61,6 @@ let listCustomers=[
             }
         ]
     }
-]
+];
+
+export default listCustomers;

@@ -1,7 +1,13 @@
 import logo from '../logo.svg';
 import '../css/App.css';
+import CustomerRow from '../components/CustomerRow';
+import listCustomers from '../data';
 
 function App() {
+    const listRows = listCustomers.map((customer) =>
+        <CustomerRow key={customer.idCustomer.toString()} value={customer} />
+    );
+    console.log("listRows",listRows);
   return (
     <div className="container-fluid">
       <table className="table">
@@ -18,9 +24,9 @@ function App() {
           </tr>
           </thead>
           <tbody>
-          <tr>
-              <CustomerRow/>
-          </tr>
+
+              {listRows}
+
           </tbody>
       </table>
     </div>
