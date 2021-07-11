@@ -1,36 +1,57 @@
-import logo from '../logo.svg';
-import '../css/App.css';
-import CustomerRow from '../components/CustomerRow';
-import listCustomers from '../data';
+import React from "react";
+import Nav from "./Nav";
+import ListCustomers from "./ListCustomers";
+import {CustomerEdit} from "./CustomerEdit";
 
-function App() {
-    const listRows = listCustomers.map((customer) =>
-        <CustomerRow key={customer.idCustomer.toString()} value={customer} />
-    );
-    console.log("listRows",listRows);
-  return (
-    <div className="container-fluid">
-      <table className="table">
-          <thead>
-          <tr>
-              <th scope="col">First Name</th>
-              <th scope="col">Last Name</th>
-              <th scope="col">Email</th>
-              <th scope="col">PhoneNumber</th>
-              <th scope="col">TPA</th>
-              <th scope="col">Notes</th>
-              <th scope="col">Addresses</th>
-              <th scope="col"> Actions</th>
-          </tr>
-          </thead>
-          <tbody>
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+} from "react-router-dom";
 
-              {listRows}
+export class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {message: '123'}
+    }
 
-          </tbody>
-      </table>
-    </div>
-  );
+    render() {
+        return (
+            <Router>
+                <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                    <div className="container-fluid">
+                        <div className="collapse navbar-collapse" id="navbarNav">
+                            <ul className="navbar-nav">
+                                <li className="nav-item">
+                                    <Link to={'/'} className="nav-link active">Customer List</Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link to={'/customer'} className="nav-link active">Create customer</Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link to={'/products'} className="nav-link active">Products</Link>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+
+                <Switch>
+                    <Route path="/customer">
+                        <CustomerEdit />
+                    </Route>
+                    <Route path="/products">
+                        <CustomerEdit />
+                    </Route>
+                    <Route exact path="/" >
+                        <ListCustomers/>
+                    </Route>
+
+                </Switch>
+            </Router>
+        );
+    }
 }
 
-export default App;
+export  default App;

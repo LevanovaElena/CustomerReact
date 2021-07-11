@@ -1,7 +1,5 @@
 import React from "react";
 import Item from './Item';
-import listCustomers from "../data";
-
 
 class CustomerRow extends React.Component{
     constructor(props) {
