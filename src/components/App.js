@@ -1,7 +1,7 @@
 import React from "react";
 import Nav from "./Nav";
-import ListCustomers from "./ListCustomers";
-import {CustomerEdit} from "./CustomerEdit";
+import ListCustomers from "../components/pages/listCustomers.component";
+import CustomerEdit from "../components/pages/customerEdit.component";
 
 import {
     BrowserRouter as Router,

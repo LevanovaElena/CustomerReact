@@ -15,13 +15,14 @@ class CustomerRow extends React.Component{
         }
         const keys=Object.keys(customer);
         const listRows = keys.map((propName) => {
-                if (propName === "notes" || propName === "addressesList") return <td></td>
+                if (propName === "notes" || propName === "addressesList") return <td></td>;
+                if (propName === "__v" ) return <td><a href='#'>delete</a>|<a href='#'>edit</a></td>;
+                else if (propName === "totalPurchasesAmount" ) return <td>{customer[propName]["$numberDecimal"]}</td>
                 else return <td>{customer[propName]}</td>
             }
 
         );
-        listRows.push(<td><a href='#'>delete</a>|<a href='#'>edit</a></td>);
-        console.log("listRows2",listRows);
+
         return <tr>{listRows}</tr>;
 
     }

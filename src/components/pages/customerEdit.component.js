@@ -13,3 +13,4 @@ export class CustomerEdit extends React.Component{
 
     }
 }
+export default CustomerEdit;
