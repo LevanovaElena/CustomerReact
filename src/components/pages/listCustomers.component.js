@@ -26,7 +26,6 @@ export class ListCustomers extends React.Component{
         const query = "";
 
         getAllCustomers(query).then(data => {
-            console.log(data);
             this.setState({listCustomers: data, isLoaded: true});
         });
 
@@ -45,10 +44,10 @@ export class ListCustomers extends React.Component{
             )
         } else {
             return (
-                <table className="table">
+                <table className="table ">
                     <thead>
                     <tr>
-                        <th scope="col">Id</th>
+                        <th scope="col" className="d-none">Id</th>
                         <th scope="col">First Name</th>
                         <th scope="col">Last Name</th>
                         <th scope="col">Email</th>

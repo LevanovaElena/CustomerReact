@@ -1,7 +1,7 @@
 import React from "react";
-import Nav from "./Nav";
 import ListCustomers from "../components/pages/listCustomers.component";
 import CustomerEdit from "../components/pages/customerEdit.component";
+import DeleteCustomer from "./pages/deleteCustomer.component";
 
 import {
     BrowserRouter as Router,
@@ -27,7 +27,7 @@ export class App extends React.Component {
                                     <Link to={'/'} className="nav-link active">Customer List</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link to={'/customer'} className="nav-link active">Create customer</Link>
+                                    <Link to={'/edit'} className="nav-link active">Create customer</Link>
                                 </li>
                                 <li className="nav-item">
                                     <Link to={'/products'} className="nav-link active">Products</Link>
@@ -38,7 +38,7 @@ export class App extends React.Component {
                 </nav>
 
                 <Switch>
-                    <Route path="/customer">
+                    <Route path="/edit">
                         <CustomerEdit />
                     </Route>
                     <Route path="/products">
@@ -47,7 +47,9 @@ export class App extends React.Component {
                     <Route exact path="/" >
                         <ListCustomers/>
                     </Route>
+                    <Route path="/delete/:id" render={(props) => <DeleteCustomer {...props}/>} >
 
+                    </Route>
                 </Switch>
             </Router>
         );

@@ -6,3 +6,12 @@ export function getAllCustomers (idCustomer) {
         return result.json();
     })
 }
+
+export function deleteCustomer (idCustomer) {
+    const url = `http://localhost:4000/customers/${idCustomer}`
+
+    return fetch(url,{method:"DELETE",mode: 'cors'})
+        .then(result => {
+        return result.json();
+    }).catch(()=>console.log("Error Delete"))
+}

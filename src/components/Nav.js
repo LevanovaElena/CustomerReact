@@ -1,8 +1,5 @@
 
 import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
     Link
 } from "react-router-dom";
 
@@ -19,7 +16,7 @@ function Nav(){
                                 <Link to={'/'} className="nav-link active">Customer List</Link>
                             </li>
                             <li className="nav-item">
-                                <Link to={'/customer'} className="nav-link active">Create customer</Link>
+                                <Link to={'/edit'} className="nav-link active">Create customer</Link>
                             </li>
                         </ul>
                     </div>
