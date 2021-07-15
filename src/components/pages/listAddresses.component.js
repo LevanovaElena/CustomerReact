@@ -2,9 +2,7 @@ import React from "react";
 
 
 export class ListAddresses extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+
     renderList() {
         const addresses=this.props.value;
 

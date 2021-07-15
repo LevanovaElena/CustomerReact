@@ -1,15 +1,10 @@
-
-import Item from './Item';
 import React from "react";
 
 export class ListNotes extends React.Component {
-    constructor(props) {
-        super(props);
-    }
     renderList() {
         return (
                 this.props.notes.map((note,index) => {
-                    return <tr key={index}><Item value={note.note} /></tr>
+                    return <tr key={index}><td >{note.note}</td></tr>;
                 })
             )
     }

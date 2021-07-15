@@ -1,5 +1,5 @@
 import React from "react";
-import {Link, match, useParams} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {deleteCustomer} from "../../services/customers.service";
 
 
