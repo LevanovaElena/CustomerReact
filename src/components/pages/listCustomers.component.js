@@ -9,26 +9,25 @@ export class ListCustomers extends React.Component{
             listCustomers: [],
             isLoaded: false,
         }
-        //this.onSearchChanged = this.onSearchChanged.bind(this);
+        this._isMounted=false;
     }
     componentDidUpdate(prevProps, prevState, snapshot) {
-
-        this.getData();
+        this._isMounted = true;
+        if(this._isMounted)this.getData();
     }
 
     componentDidMount() {
-        console.log('start');
-        this.getData();
+        this._isMounted = true;
+        if(this._isMounted)this.getData();
     }
-
+    componentWillUnmount() {
+        this._isMounted = false;
+    }
     getData() {
-        //const searchParams = new URLSearchParams(this.props.location.search);
         const query = "";
-
         getAllCustomers(query).then(data => {
             this.setState({listCustomers: data, isLoaded: true});
         });
-
     }
 
     renderList() {

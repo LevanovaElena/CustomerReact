@@ -6,17 +6,17 @@ export class ListAddresses extends React.Component {
     renderList() {
         const addresses=this.props.value;
 
-        return  addresses.map((address)=>{
-            return <tr>{this.getRowAddress(address)}</tr>
+        return  addresses.map((address,index)=>{
+            return <tr key={index.toString()}>{this.getRowAddress(address)}</tr>
         })
 
     }
 
     getRowAddress(address){
         const keys=Object.keys(address);
-        return  keys.map((propName) => {
-            if(propName==="_id")return <td className='d-none'>{address[propName]}</td>;
-            return <td>{address[propName]}</td>;
+        return  keys.map((propName,index) => {
+            if(propName==="_id")return <td className='d-none'  key={index.toString()}>{address[propName]}</td>;
+            return <td key={index.toString()}>{address[propName]}</td>;
         });
     }
 

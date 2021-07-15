@@ -27,7 +27,7 @@ export class App extends React.Component {
                                     <Link to={'/'} className="nav-link active">Customer List</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link to={'/edit'} className="nav-link active">Create customer</Link>
+                                    <Link to={'/edit/new'} className="nav-link active">Create customer</Link>
                                 </li>
                                 <li className="nav-item">
                                     <Link to={'/products'} className="nav-link active">Products</Link>
@@ -38,8 +38,8 @@ export class App extends React.Component {
                 </nav>
 
                 <Switch>
-                    <Route path="/edit">
-                        <CustomerEdit />
+                    <Route path="/edit/:id" render={(props) => <CustomerEdit {...props}/>}>
+
                     </Route>
                     <Route path="/products">
                         <CustomerEdit />
