@@ -1,14 +1,16 @@
+import {API_ENDPOINT} from "../properties";
+
 export function getAllCustomers (idCustomer) {
     const url = idCustomer
-        ? `http://localhost:4000/customers/${idCustomer}`
-        : `http://localhost:4000/customers/`
+        ? `${API_ENDPOINT}${idCustomer}`
+        : API_ENDPOINT
     return fetch(url).then(result => {
         return result.json();
     })
 }
 
 export function deleteCustomer (idCustomer) {
-    const url = `http://localhost:4000/customers/${idCustomer}`
+    const url = `${API_ENDPOINT}${idCustomer}`
 
     return fetch(url,{method:"DELETE",mode: 'cors'})
         .then(result => {
@@ -17,7 +19,7 @@ export function deleteCustomer (idCustomer) {
 }
 
 export function getCustomer(idCustomer){
-    const url = `http://localhost:4000/customers/${idCustomer}`
+    const url = `${API_ENDPOINT}${idCustomer}`
 
     return fetch(url,{method:"GET",mode: 'cors'})
         .then(result => {
@@ -25,8 +27,7 @@ export function getCustomer(idCustomer){
         }).catch(()=>console.log("Error Get Customer"))
 }
 export function updateCustomer(idCustomer,body){
-    const url = `http://localhost:4000/customers/${idCustomer}`;
-    console.log("body",body);
+    const url = `${API_ENDPOINT}${idCustomer}`;
     return fetch(url,{
         method:"PUT",
         mode: 'cors',
@@ -35,15 +36,12 @@ export function updateCustomer(idCustomer,body){
         'Content-Type': 'application/json'
         }})
         .then(result => {
-            console.log(result.json());
             return result.json();
-
-        }).catch(()=>console.log("Error Update Customer"))
+        }).catch((err)=>console.log("Error Update Customer",err))
 }
 
 export function createCustomer(body){
-    const url = `http://localhost:4000/customers/`;
-    console.log("body",body);
+    const url = API_ENDPOINT;
     return fetch(url,{
         method:"POST",
         mode: 'cors',
@@ -52,8 +50,6 @@ export function createCustomer(body){
             'Content-Type': 'application/json'
         }})
         .then(result => {
-            console.log(result.json());
             return result.json();
-
         }).catch(()=>console.log("Error Create Customer"))
 }
