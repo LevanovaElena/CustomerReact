@@ -4,6 +4,12 @@ import {getCustomer,updateCustomer,createCustomer} from "../../services/customer
 import {Link} from "react-router-dom";
 import * as Yup from 'yup';
 
+const NotesSchema = Yup.object().shape({
+    note:Yup.string()
+        .min(2, 'Too Short!')
+        .max(150, 'Too Long!')
+        .required('Required'),
+})
 const SignupSchema = Yup.object().shape({
     firstName: Yup.string()
         .min(2, 'Too Short!')
@@ -14,6 +20,15 @@ const SignupSchema = Yup.object().shape({
         .required('Required'),
     email: Yup.string().email('Invalid email'),
     phoneNumber: Yup.string().matches(/^\+[1-9]\d{10,14}$/,{ message: "Phone Number is not correct", excludeEmptyString: true }),
+    notes: Yup.array()
+        .of(
+            Yup.object().shape({
+                note: Yup.string()
+                    .min(3, 'Минимум 3 символа')
+                    .max(60, 'Максимум 60 символов')
+                    .required('Обязательное поле')
+            })
+        )
 
 });
 
@@ -37,21 +52,24 @@ export class CustomerEdit extends React.Component{
 
     getData() {
         getCustomer(this.props.match.params.id).then(data => {
-            this.setState({customer: data, isLoaded: true});
+            if(data.message!=null)alert("Customer not found!");
+            else this.setState({customer: data, isLoaded: true});
         });
     }
 
     updateData(values){
-          updateCustomer(this.props.match.params.id,values).then(()=>{
-            alert("Customer was saved!")
+          updateCustomer(this.props.match.params.id,values).then((result)=>{
+              if(result.message!=null)alert("Customer was not saved!")
+              else alert("Customer was saved!")
         });
     }
 
     createData(values){
         console.log(values);
-        createCustomer(values).then(()=>{
-            alert("Customer was saved!")
-        });
+        createCustomer(values).then((result)=>{
+            if(result.message!=null)alert("Customer was not saved!")
+            else alert("Customer was saved!")
+        }).catch((error)=>alert("Error"));
     }
     render() {
 
@@ -83,11 +101,13 @@ export class CustomerEdit extends React.Component{
             }}
             validationSchema={SignupSchema}
             onSubmit={(values) =>  {
-                let isChange=false;
-                for (let key in values){
-                    if(values[key]!==this.state.customer[key]) {
-                        isChange = true;
-                        break;
+                let isChange=this.state.isNewCustomer?true:false;
+                if(!isChange) {
+                    for (let key in values) {
+                        if (values[key] !== this.state.customer[key]) {
+                            isChange = true;
+                            break;
+                        }
                     }
                 }
                 if(isChange) {
@@ -146,11 +166,14 @@ export class CustomerEdit extends React.Component{
                         </div>
                         <div className='form-control m-5 w-75'>
                             <label>List of notes</label>
+                            {errors.notes && touched.notes ? (
+                                <div className="small text-danger">{errors.notes}</div>
+                            ) : null}
                                 <FieldArray name="notes">
                                     {fieldArrayProps => {
                                         const { push, remove, form } = fieldArrayProps
                                         const { values } = form
-                                        const { notes } = values
+                                        const { notes } = valgitues
                                         // console.log('fieldArrayProps', fieldArrayProps)
                                         // console.log('Form errors', form.errors)
                                         return (
@@ -158,6 +181,7 @@ export class CustomerEdit extends React.Component{
                                                 {notes.map((phNumber, index) => (
                                                     <div key={index}>
                                                         <Field name={`notes[${index}].note`} />
+
                                                         {index > 0 && (
                                                             <button type='button' className="btn btn-sm btn-success m-1" onClick={() => remove(index)}>
                                                                 -

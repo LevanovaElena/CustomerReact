@@ -37,10 +37,7 @@ describe("List Customers Page Component", () => {
             const mockResult={total:2,docs:mockList,skip:0,limit:100};
             return {
                 getCustomer: (idCustomer) => {
-                    switch(idCustomer) {
-                        case '':
-                            return Promise.resolve(mockResult)
-                    }
+
                     return Promise.resolve([])
                 }
             }

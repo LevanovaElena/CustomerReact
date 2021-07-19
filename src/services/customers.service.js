@@ -5,7 +5,8 @@ export function deleteCustomer (idCustomer) {
 
     return fetch(url,{method:"DELETE",mode: 'cors'})
         .then(result => {
-        return result.json();
+            if(result.status===200)  return result.json();
+            else throw Error("Not delete customer!");
     }).catch(()=>console.log("Error Delete"))
 }
 
@@ -31,7 +32,8 @@ export function updateCustomer(idCustomer,body){
         'Content-Type': 'application/json'
         }})
         .then(result => {
-            return result.json();
+            if(result.status===200)  return result.json();
+            else return null;
         }).catch((err)=>console.log("Error Update Customer",err))
 }
 
