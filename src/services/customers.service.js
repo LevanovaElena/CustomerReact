@@ -1,14 +1,5 @@
 import {API_ENDPOINT} from "../properties";
 
-export function getAllCustomers (idCustomer) {
-    const url = idCustomer
-        ? `${API_ENDPOINT}${idCustomer}`
-        : API_ENDPOINT
-    return fetch(url).then(result => {
-        return result.json();
-    })
-}
-
 export function deleteCustomer (idCustomer) {
     const url = `${API_ENDPOINT}${idCustomer}`
 
@@ -19,12 +10,16 @@ export function deleteCustomer (idCustomer) {
 }
 
 export function getCustomer(idCustomer){
-    const url = `${API_ENDPOINT}${idCustomer}`
+    const url =idCustomer
+        ?`${API_ENDPOINT}${idCustomer}`
+        :API_ENDPOINT
 
     return fetch(url,{method:"GET",mode: 'cors'})
         .then(result => {
-            return result.json();
-        }).catch(()=>console.log("Error Get Customer"))
+            if(result.status===200)  return result.json();
+            else return null;
+
+        }).catch((error)=>console.log(error.message))
 }
 export function updateCustomer(idCustomer,body){
     const url = `${API_ENDPOINT}${idCustomer}`;

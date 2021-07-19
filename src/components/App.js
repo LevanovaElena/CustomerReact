@@ -6,15 +6,11 @@ import DeleteCustomer from "./pages/deleteCustomer.component";
 import {
     BrowserRouter as Router,
     Switch,
-    Route,
-    Link
+    Route, Link,
 } from "react-router-dom";
+import Nav from "./common/Nav";
 
 export class App extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {message: '123'}
-    }
 
     render() {
         return (

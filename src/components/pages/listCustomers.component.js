@@ -1,5 +1,5 @@
 import CustomerRow from './CustomerRow';
-import {getAllCustomers} from '../../services/customers.service';
+import {getCustomer} from '../../services/customers.service';
 import React from "react";
 
 export class ListCustomers extends React.Component{
@@ -9,24 +9,21 @@ export class ListCustomers extends React.Component{
             listCustomers: [],
             isLoaded: false,
         }
-        this._isMounted=false;
+
     }
     componentDidUpdate(prevProps, prevState, snapshot) {
-        this._isMounted = true;
-        if(this._isMounted)this.getData();
+        //this.getData();
     }
 
     componentDidMount() {
-        this._isMounted = true;
-        if(this._isMounted)this.getData();
+        this.getData();
     }
-    componentWillUnmount() {
-        this._isMounted = false;
-    }
+
     getData() {
         const query = "";
-        getAllCustomers(query).then(data => {
-            this.setState({listCustomers: data.docs, isLoaded: true});
+        getCustomer(query).then(data => {
+           if(data) this.setState({listCustomers: data.docs, isLoaded: true});
+            else this.setState({listCustomers: null, isLoaded: true});
         });
     }
 
@@ -37,7 +34,7 @@ export class ListCustomers extends React.Component{
                     <h2>Loading...</h2>
                 </div>
             )
-        } else if (this.state.isLoaded && this.state.listCustomers.length === 0) {
+        } else if (this.state.isLoaded && this.state.listCustomers===null) {
             return (
                 <div><h2>No Customers</h2></div>
             )

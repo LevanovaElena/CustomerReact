@@ -1,6 +1,6 @@
 let listCustomers=[
     {
-        idCustomer:1,
+        _id:1,
         firstName:"Ivan",
         lastName:"Ivanov",
         phoneNumber:"+7345663523",
@@ -9,7 +9,7 @@ let listCustomers=[
         notes:["note1","note2","note3"],
         addressesList:[
             {
-                idAddress:1,
+                _id:1,
                 addressLine:"Address1",
                 addressLine2:"Address2",
                 typeAddress:"Billing",
@@ -19,7 +19,7 @@ let listCustomers=[
                 country:"Canada"
             },
             {
-                idAddress:2,
+                _id:2,
                 addressLine:"Address21",
                 addressLine2:"Address22",
                 typeAddress:"Billing",
@@ -31,7 +31,7 @@ let listCustomers=[
         ]
     },
     {
-        idCustomer:2,
+        _id:2,
         firstName:"Ivanka",
         lastName:"Ivanova",
         phoneNumber:"+7345622223",
