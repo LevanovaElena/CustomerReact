@@ -9,6 +9,8 @@ import { Link } from "react-router-dom";
 import SignupSchema from "../common/validationSchema";
 import Customer from "../common/customerObject";
 import Modal from "../common/modalWindow.component";
+import { apiManager } from "../common/apiManager";
+import { Errors } from "../common/error.component";
 
 export class CustomerEdit extends React.Component {
   constructor(props) {
@@ -22,6 +24,7 @@ export class CustomerEdit extends React.Component {
       modalContent: "content",
     };
     this.onCloseModal = this.onCloseModal.bind(this);
+    this.idCustomer = this.props.match.params.id;
   }
 
   onCloseModal() {
@@ -47,25 +50,24 @@ export class CustomerEdit extends React.Component {
   }
 
   getData() {
-    getCustomer(this.props.match.params.id).then((data) => {
-      if (data.message != null)
-        this.viewModal("Loading customer data", "Customer not found!");
+    getCustomer(this.idCustomer, apiManager).then((data) => {
+      if (!data) this.viewModal("Loading customer data", "Customer not found!");
       else this.setState({ customer: data, isLoaded: true });
     });
   }
 
   updateData(values) {
-    updateCustomer(this.props.match.params.id, values).then((result) => {
-      if (result.message != null)
+    updateCustomer(this.idCustomer, values, apiManager).then((result) => {
+      if (!result)
         this.viewModal("Updating customer data", "Customer was not saved!");
       else this.viewModal("Updating customer data", "Customer was saved!");
     });
   }
 
   createData(values) {
-    createCustomer(values)
+    createCustomer(values, apiManager)
       .then((result) => {
-        if (result.message != null)
+        if (!result)
           this.viewModal("Saving of customer", "Customer was not saved!");
         else this.viewModal("Save of customer", "Customer was saved!");
       })
@@ -193,9 +195,9 @@ export class CustomerEdit extends React.Component {
                       const { push, remove, form } = fieldArrayProps;
                       const { values } = form;
                       const { notes } = values;
-                      console.log("fieldArrayProps", fieldArrayProps);
+                      /*                     console.log("fieldArrayProps", fieldArrayProps);
                       console.log("Form errors", form.errors);
-                      console.log("Notes", notes);
+                      console.log("Notes", notes);*/
                       return (
                         <div>
                           {notes.map((note, index) => (
@@ -389,6 +391,7 @@ export class CustomerEdit extends React.Component {
                     Return
                   </Link>
                 </div>
+                <Errors value={apiManager.errorsOfData} />
               </Form>
               <Modal
                 visible={this.state.modalVisible}

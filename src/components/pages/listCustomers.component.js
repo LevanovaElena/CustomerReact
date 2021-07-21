@@ -1,7 +1,8 @@
 import CustomerRow from "./CustomerRow";
 import { getCustomer } from "../../services/customers.service";
 import React from "react";
-import Modal from "../common/modalWindow.component";
+import { Errors } from "../common/error.component";
+import { apiManager } from "../common/apiManager";
 
 export class ListCustomers extends React.Component {
   constructor(props) {
@@ -9,27 +10,23 @@ export class ListCustomers extends React.Component {
     this.state = {
       listCustomers: [],
       isLoaded: false,
-      isModal: true,
     };
-    this.onCloseModal = this.onCloseModal.bind(this);
   }
 
-  onCloseModal() {
-    this.setState((prevState) => ({
-      isModal: !prevState.isModal,
-    }));
-  }
   componentDidUpdate(prevProps, prevState, snapshot) {
     //this.getData();
   }
 
   componentDidMount() {
+    console.log("from react 1 ", apiManager.errorsOfData);
     this.getData();
   }
 
   getData() {
     const query = "";
-    getCustomer(query).then((data) => {
+
+    getCustomer(query, apiManager).then((data) => {
+      console.log("from react 2", apiManager.errorsOfData);
       if (data) this.setState({ listCustomers: data.docs, isLoaded: true });
       else this.setState({ listCustomers: null, isLoaded: true });
     });
@@ -40,12 +37,14 @@ export class ListCustomers extends React.Component {
       return (
         <div>
           <h2>Loading...</h2>
+          <Errors value={apiManager.errorsOfData} />
         </div>
       );
     } else if (this.state.isLoaded && this.state.listCustomers === null) {
       return (
         <div>
           <h2>No Customers</h2>
+          <Errors value={apiManager.errorsOfData} />
         </div>
       );
     } else {
@@ -74,6 +73,7 @@ export class ListCustomers extends React.Component {
               })}
             </tbody>
           </table>
+          <Errors value={apiManager.errorsOfData} />
         </React.Fragment>
       );
     }

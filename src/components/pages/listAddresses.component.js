@@ -20,7 +20,6 @@ export class ListAddresses extends React.Component {
   }
 
   render() {
-    const addresses = this.props.value;
     return (
       <table className="table table-light table-bordered m-0 table-sm">
         {/*                <thead className="text-muted small fs-6">

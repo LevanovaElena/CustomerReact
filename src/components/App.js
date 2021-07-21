@@ -2,8 +2,8 @@ import React from "react";
 import ListCustomers from "../components/pages/listCustomers.component";
 import CustomerEdit from "../components/pages/customerEdit.component";
 import DeleteCustomer from "./pages/deleteCustomer.component";
-
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import ProductsList from "./pages/products.component";
 
 export class App extends React.Component {
   render() {
@@ -39,7 +39,7 @@ export class App extends React.Component {
             render={(props) => <CustomerEdit {...props} />}
           ></Route>
           <Route path="/products">
-            <CustomerEdit />
+            <ProductsList />
           </Route>
           <Route exact path="/">
             <ListCustomers />
