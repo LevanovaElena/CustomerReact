@@ -46,6 +46,7 @@
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.6",
     "fetch-mock-jest": "^1.5.1",
-    "node-fetch": "^2.6.1"
+    "node-fetch": "^2.6.1",
+    "prettier": "^2.3.2"
   }
 }
