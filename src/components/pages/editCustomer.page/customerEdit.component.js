@@ -52,14 +52,14 @@ export class CustomerEdit extends React.Component {
   }
 
   getData() {
-    getCustomer(this.idCustomer, apiManager).then((data) => {
+    getCustomer(this.idCustomer).then((data) => {
       if (!data) this.viewModal("Loading customer data", "Customer not found!");
       else this.setState({ customer: data, isLoaded: true });
     });
   }
 
   updateData(values) {
-    updateCustomer(this.idCustomer, values, apiManager).then((result) => {
+    updateCustomer(this.idCustomer, values).then((result) => {
       if (!result)
         this.viewModal("Updating customer data", "Customer was not saved!");
       else this.viewModal("Updating customer data", "Customer was saved!");
@@ -67,7 +67,7 @@ export class CustomerEdit extends React.Component {
   }
 
   createData(values) {
-    createCustomer(values, apiManager)
+    createCustomer(values)
       .then((result) => {
         if (!result)
           this.viewModal("Saving of customer", "Customer was not saved!");

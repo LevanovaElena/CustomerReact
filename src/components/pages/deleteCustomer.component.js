@@ -17,7 +17,7 @@ class DeleteCustomer extends React.Component {
   }
 
   deleteData(id) {
-    deleteCustomer(id, apiManager).then((data) => {
+    deleteCustomer(id).then((data) => {
       this.setState({ isDelete: true });
       return <Redirect to="/" />;
     });

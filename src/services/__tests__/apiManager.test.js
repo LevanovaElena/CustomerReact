@@ -1,4 +1,4 @@
-import { ApiManager } from "../apiManager";
+import { apiManager } from "../apiManager";
 import fetchMock from "fetch-mock-jest";
 import listCustomers from "../../data";
 import { API_ENDPOINT } from "../../properties";
@@ -7,7 +7,6 @@ describe("Api Manager Class Tests", () => {
   beforeEach(() => {
     fetchMock.reset();
   });
-  const apiManager = new ApiManager();
 
   test("Should be  correct object creation", () => {
     expect(apiManager.errorsOfData).toEqual([]);
@@ -102,7 +101,7 @@ describe("Api Manager Class Tests", () => {
   test("Should Get Errors For status 400 and other", async () => {
     const resultOne = listCustomers[0];
     const urlForList = `${API_ENDPOINT}/customer/`;
-    const apiManager2 = new ApiManager();
+    apiManager.errorsOfData = [];
     fetchMock.mockClear();
     fetchMock
       .get(urlForList, () => {
@@ -113,17 +112,17 @@ describe("Api Manager Class Tests", () => {
       });
 
     let method = "GET";
-    await apiManager2.getData(urlForList, method);
+    await apiManager.getData(urlForList, method);
 
-    expect(apiManager2.errorsOfData.length).toEqual(1);
-    expect(apiManager2.errorsOfData[0].message).toEqual(
+    expect(apiManager.errorsOfData.length).toEqual(1);
+    expect(apiManager.errorsOfData[0].message).toEqual(
       "Error for 404 and other"
     );
 
     method = "POST";
-    await apiManager2.setData(resultOne, urlForList, method);
-    expect(apiManager2.errorsOfData.length).toEqual(2);
-    expect(apiManager2.errorsOfData[1].message).toEqual(
+    await apiManager.setData(resultOne, urlForList, method);
+    expect(apiManager.errorsOfData.length).toEqual(2);
+    expect(apiManager.errorsOfData[1].message).toEqual(
       "Error for 404 and other"
     );
   });

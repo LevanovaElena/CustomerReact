@@ -1,7 +1,7 @@
 import { API_ENDPOINT } from "../properties";
-//import { apiManager } from "../components/common/apiManager";
+import { apiManager } from "./apiManager";
 
-export function deleteCustomer(idCustomer, apiManager) {
+export function deleteCustomer(idCustomer) {
   const url = `${API_ENDPOINT}/customers/${idCustomer}`;
 
   return apiManager
@@ -9,10 +9,12 @@ export function deleteCustomer(idCustomer, apiManager) {
     .then((result) => {
       if (!result.error) return result;
     })
-    .catch((error) => console.log("Error from api", error));
+    .catch((error) => {
+      if (apiManager.errorsOfData) apiManager.errorsOfData.push(error);
+    });
 }
 
-export function getCustomer(idCustomer, apiManager) {
+export function getCustomer(idCustomer) {
   const url = idCustomer
     ? `${API_ENDPOINT}/customers/${idCustomer}`
     : API_ENDPOINT + "/customers";
@@ -22,10 +24,12 @@ export function getCustomer(idCustomer, apiManager) {
     .then((result) => {
       if (!result.error) return result;
     })
-    .catch((error) => console.log("Error from api", error));
+    .catch((error) => {
+      if (apiManager.errorsOfData) apiManager.errorsOfData.push(error);
+    });
 }
 
-export function updateCustomer(idCustomer, body, apiManager) {
+export function updateCustomer(idCustomer, body) {
   const url = `${API_ENDPOINT}/customers/${idCustomer}`;
 
   return apiManager
@@ -33,28 +37,19 @@ export function updateCustomer(idCustomer, body, apiManager) {
     .then((result) => {
       if (!result.error) return result;
     })
-    .catch((error) => console.log("Error from api", error));
+    .catch((error) => {
+      if (apiManager.errorsOfData) apiManager.errorsOfData.push(error);
+    });
 }
 
-export function createCustomer(body, apiManager) {
+export function createCustomer(body) {
   const url = API_ENDPOINT + "/customers/";
   return apiManager
     .setData(body, url, "POST")
     .then((result) => {
       if (!result.error) return result;
     })
-    .catch((error) => console.log("Error from api", error));
-
-  /*  return fetch(url, {
-    method: "POST",
-    mode: "cors",
-    body: body,
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-    .then((result) => {
-      return result.json();
-    })
-    .catch(() => console.log("Error Create Customer"));*/
+    .catch((error) => {
+      if (apiManager.errorsOfData) apiManager.errorsOfData.push(error);
+    });
 }

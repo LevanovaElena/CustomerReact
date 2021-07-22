@@ -1,6 +1,6 @@
 import EventEmitter from "events";
 
-export default class ApiManager extends EventEmitter {
+class ApiManager extends EventEmitter {
   constructor() {
     super();
     this.errorsOfData = [];
