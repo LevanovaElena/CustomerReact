@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { apiManager } from "./apiManager";
+import { apiManager } from "../../services/apiManager";
 
 export const Errors = (errorsOld) => {
   const [errors, setErrors] = useState([]);

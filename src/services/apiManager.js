@@ -1,11 +1,12 @@
 import EventEmitter from "events";
 
-export class ApiManager extends EventEmitter {
+export default class ApiManager extends EventEmitter {
   constructor() {
     super();
     this.errorsOfData = [];
   }
 
+  //for POST,PUT
   setData(data, url, method) {
     // console.log("form api: ", data + " " + url + " " + method);
     return fetch(url, {
@@ -18,32 +19,28 @@ export class ApiManager extends EventEmitter {
     })
       .then((response) => {
         // console.log("from Api Manager Set: ", response);
-        if (response.status === 200) return response;
-        else throw new Error("Что-то пошло не так");
+        if (response.status === 200) return response.json();
+        else throw new Error("Error for 404 and other");
       })
       .catch((error) => {
         this.errorsOfData.push(error);
-        this.errorsOfData.push(error);
-
         this.emit("apiError", error);
         return Promise.resolve({ error: error });
       });
   }
 
+  //for GET,DELETE
   getData(url, method) {
     //console.log("form apiManager Get: ", url + " " + method);
-    return fetch(url, {
-      method: method,
-    })
+    return fetch(url, { method: method })
       .then((response) => {
-        //console.log("Response from api", response.status);
-        if (response.status === 200) return response;
-        else throw new Error("Что-то пошло не так");
+        console.log("Response from api", response.status);
+        if (response.status === 200) return response.json();
+        else throw new Error("Error for 404 and other");
       })
       .catch((error) => {
-        console.log("Error from api", this.errorsOfData);
         this.errorsOfData.push(error);
-
+        console.log("Error from api", this.errorsOfData);
         this.emit("apiError", error);
         return Promise.resolve({ error: error });
       });

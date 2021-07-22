@@ -1,6 +1,6 @@
 import React from "react";
-import ListCustomers from "../components/pages/listCustomers.component";
-import CustomerEdit from "../components/pages/customerEdit.component";
+import ListCustomers from "./pages/listCustomer.page/listCustomers.component";
+import CustomerEdit from "./pages/editCustomer.page/customerEdit.component";
 import DeleteCustomer from "./pages/deleteCustomer.component";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import ProductsList from "./pages/products.component";

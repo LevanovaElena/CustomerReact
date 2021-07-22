@@ -7,26 +7,20 @@ export function deleteCustomer(idCustomer, apiManager) {
   return apiManager
     .getData(url, "DELETE")
     .then((result) => {
-      if (!result.error) return result.json();
+      if (!result.error) return result;
     })
     .catch((error) => console.log("Error from api", error));
-  /*return fetch(url, { method: "DELETE", mode: "cors" })
-    .then((result) => {
-      if (result.status === 200) return result.json();
-      else throw Error("Not delete customer!");
-    })
-    .catch(() => console.log("Error Delete"));*/
 }
 
 export function getCustomer(idCustomer, apiManager) {
   const url = idCustomer
     ? `${API_ENDPOINT}/customers/${idCustomer}`
     : API_ENDPOINT + "/customers";
-
+  console.log(apiManager);
   return apiManager
     .getData(url, "GET")
     .then((result) => {
-      if (!result.error) return result.json();
+      if (!result.error) return result;
     })
     .catch((error) => console.log("Error from api", error));
 }
@@ -37,7 +31,7 @@ export function updateCustomer(idCustomer, body, apiManager) {
   return apiManager
     .setData(body, url, "PUT")
     .then((result) => {
-      if (!result.error) return result.json();
+      if (!result.error) return result;
     })
     .catch((error) => console.log("Error from api", error));
 }
@@ -47,7 +41,7 @@ export function createCustomer(body, apiManager) {
   return apiManager
     .setData(body, url, "POST")
     .then((result) => {
-      if (!result.error) return result.json();
+      if (!result.error) return result;
     })
     .catch((error) => console.log("Error from api", error));
 

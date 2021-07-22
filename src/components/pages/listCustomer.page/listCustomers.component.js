@@ -1,8 +1,8 @@
 import CustomerRow from "./CustomerRow";
-import { getCustomer } from "../../services/customers.service";
+import { getCustomer } from "../../../services/customers.service";
 import React from "react";
-import { Errors } from "../common/error.component";
-import { apiManager } from "../common/apiManager";
+import { Errors } from "../../common/error.component";
+import { apiManager } from "../../../services/apiManager";
 
 export class ListCustomers extends React.Component {
   constructor(props) {

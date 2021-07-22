@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, Redirect } from "react-router-dom";
 import { deleteCustomer } from "../../services/customers.service";
-import { apiManager } from "../common/apiManager";
+import { apiManager } from "../../services/apiManager";
 import { Errors } from "../common/error.component";
 
 class DeleteCustomer extends React.Component {

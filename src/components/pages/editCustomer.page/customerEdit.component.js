@@ -4,13 +4,13 @@ import {
   getCustomer,
   updateCustomer,
   createCustomer,
-} from "../../services/customers.service";
+} from "../../../services/customers.service";
 import { Link } from "react-router-dom";
-import SignupSchema from "../common/validationSchema";
-import Customer from "../common/customerObject";
-import Modal from "../common/modalWindow.component";
-import { apiManager } from "../common/apiManager";
-import { Errors } from "../common/error.component";
+import SignupSchema from "../../common/validationSchema";
+import Customer from "../../common/customerObject";
+import Modal from "../../common/modalWindow.component";
+import { apiManager } from "../../../services/apiManager";
+import { Errors } from "../../common/error.component";
 import ListNoteEdit from "./listNoteEdit.component";
 import ListAddressesEdit from "./ListAddressesEdit.component";
 
