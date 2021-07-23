@@ -128,7 +128,7 @@ describe("Customer Edit Component", () => {
     const props = {
       match: { params: { id: "1" } },
     };
-    const componentupdateData = jest.spyOn(
+    const componentUpdateData = jest.spyOn(
       CustomerEdit.prototype,
       "updateData"
     );
@@ -155,7 +155,7 @@ describe("Customer Edit Component", () => {
     expect(component.find(".text-danger").length).toEqual(0); //нет ошибок,значит вызвалась функция обновления
     await component.update();
     expect(componentOnSave).toHaveBeenCalledTimes(1);
-    expect(componentupdateData).toHaveBeenCalledTimes(1);
+    expect(componentUpdateData).toHaveBeenCalledTimes(1);
   });
 
   test("Should be Render New Customer and Submit with Create", async () => {
@@ -167,7 +167,7 @@ describe("Customer Edit Component", () => {
       "createData"
     );
     const componentOnSave = jest.spyOn(CustomerEdit.prototype, "onSaveClick");
-    const componentViewModal = jest.spyOn(CustomerEdit.prototype, "viewModal");
+    //const componentViewModal = jest.spyOn(CustomerEdit.prototype, "viewModal");
     const component = mount(<CustomerEdit {...props} />);
     await component.update();
 
