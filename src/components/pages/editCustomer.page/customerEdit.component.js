@@ -78,8 +78,6 @@ class CustomerEdit extends React.Component {
   }
 
   onSaveClick(values) {
-    console.log(values);
-
     if (!this.state.isNewCustomer)
       this.updateData(JSON.stringify(values, null, 2));
     else this.createData(JSON.stringify(values, null, 2));
@@ -100,7 +98,7 @@ class CustomerEdit extends React.Component {
         onSubmit={this.onSaveClick}
       >
         {(formik) => {
-          console.log("Formik props", formik);
+          //console.log("Formik props", formik);
 
           const { errors, touched } = formik;
           return (

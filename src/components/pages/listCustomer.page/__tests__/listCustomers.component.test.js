@@ -1,6 +1,7 @@
 import { shallow, mount } from "enzyme";
 import mockListCustomers from "../../../../data";
 import ListCustomers from "../listCustomers.component";
+import { act } from "@testing-library/react";
 
 jest.mock("react-router-dom", () => {
   return {
@@ -66,9 +67,14 @@ describe("List Customers Page Component", () => {
       ListCustomers.prototype,
       "componentDidMount"
     );
+    let component = await shallow(<ListCustomers limit="5" />);
+    await act(async () => {
+      //component = await shallow(<ListCustomers limit="5" />);
+      await component.update();
+    });
 
-    const component = shallow(<ListCustomers limit="5" />);
     await component.update();
+
     expect(componentDidMountSpy).toHaveBeenCalledTimes(1);
     expect(componentGetData).toBeCalledWith({ skip: "0", limit: "5" });
 
