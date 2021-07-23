@@ -14,7 +14,7 @@ import { Errors } from "../../common/error.component";
 import ListNoteEdit from "./listNoteEdit.component";
 import ListAddressesEdit from "./ListAddressesEdit.component";
 
-export class CustomerEdit extends React.Component {
+class CustomerEdit extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

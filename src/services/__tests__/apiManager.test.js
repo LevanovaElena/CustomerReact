@@ -116,7 +116,7 @@ describe("Api Manager Class Tests", () => {
 
     expect(apiManager.errorsOfData.length).toEqual(1);
     expect(apiManager.errorsOfData[0].message).toEqual(
-      "Error for 404 and other"
+      " Error from server: 400"
     );
 
     method = "POST";

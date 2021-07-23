@@ -1,66 +1,66 @@
-let listCustomers=[
-    {
-        _id:1,
-        firstName:"Ivan",
-        lastName:"Ivanov",
-        phoneNumber:"+7345663523",
-        email:"ivan@gmail.com",
-        totalPurchasesAmount:12,
-        notes:["note1","note2","note3"],
-        addressesList:[
-            {
-                _id:1,
-                addressLine:"Address1",
-                addressLine2:"Address2",
-                typeAddress:"Billing",
-                city:"City",
-                postalCode:"123456",
-                state:"State",
-                country:"Canada"
-            },
-            {
-                _id:2,
-                addressLine:"Address21",
-                addressLine2:"Address22",
-                typeAddress:"Billing",
-                city:"City2",
-                postalCode:"123456",
-                state:"State2",
-                country:"Canada"
-            }
-        ]
-    },
-    {
-        _id:2,
-        firstName:"Ivanka",
-        lastName:"Ivanova",
-        phoneNumber:"+7345622223",
-        email:"ivanka@gmail.com",
-        totalPurchasesAmount:12,
-        notes:["note1","note2","note3"],
-        addressesList:[
-            {
-                idAddress:1,
-                addressLine:"Address1",
-                addressLine2:"Address2",
-                typeAddress:"Billing",
-                city:"City",
-                postalCode:"123456",
-                state:"State",
-                country:"Canada"
-            },
-            {
-                idAddress:2,
-                addressLine:"Address21",
-                addressLine2:"Address22",
-                typeAddress:"Billing",
-                city:"City2",
-                postalCode:"123456",
-                state:"State2",
-                country:"Canada"
-            }
-        ]
-    }
+let mockListCustomers = [
+  {
+    _id: 1,
+    firstName: "Ivan",
+    lastName: "Ivanov",
+    phoneNumber: "+7345663523",
+    email: "ivan@gmail.com",
+    totalPurchasesAmount: 12,
+    notes: ["note1", "note2", "note3"],
+    addressesList: [
+      {
+        _id: 1,
+        addressLine: "Address1",
+        addressLine2: "Address2",
+        typeAddress: "Billing",
+        city: "City",
+        postalCode: "123456",
+        state: "State",
+        country: "Canada",
+      },
+      {
+        _id: 2,
+        addressLine: "Address21",
+        addressLine2: "Address22",
+        typeAddress: "Billing",
+        city: "City2",
+        postalCode: "123456",
+        state: "State2",
+        country: "Canada",
+      },
+    ],
+  },
+  {
+    _id: 2,
+    firstName: "Ivanka",
+    lastName: "Ivanova",
+    phoneNumber: "+7345622223",
+    email: "ivanka@gmail.com",
+    totalPurchasesAmount: 12,
+    notes: ["note1", "note2", "note3"],
+    addressesList: [
+      {
+        idAddress: 1,
+        addressLine: "Address1",
+        addressLine2: "Address2",
+        typeAddress: "Billing",
+        city: "City",
+        postalCode: "123456",
+        state: "State",
+        country: "Canada",
+      },
+      {
+        idAddress: 2,
+        addressLine: "Address21",
+        addressLine2: "Address22",
+        typeAddress: "Billing",
+        city: "City2",
+        postalCode: "123456",
+        state: "State2",
+        country: "Canada",
+      },
+    ],
+  },
 ];
 
-export default listCustomers;
+export default mockListCustomers;

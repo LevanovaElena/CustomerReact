@@ -14,15 +14,16 @@ export function deleteCustomer(idCustomer) {
     });
 }
 
-export function getCustomer(idCustomer) {
+export function getCustomer(idCustomer, params) {
   const url = idCustomer
     ? `${API_ENDPOINT}/customers/${idCustomer}`
-    : API_ENDPOINT + "/customers";
-  console.log(apiManager);
+    : API_ENDPOINT + `/customers/?skip=${params.skip}&limit=${params.limit}`;
+
   return apiManager
     .getData(url, "GET")
     .then((result) => {
       if (!result.error) return result;
+      else return Promise.resolve({ docs: [] });
     })
     .catch((error) => {
       if (apiManager.errorsOfData) apiManager.errorsOfData.push(error);

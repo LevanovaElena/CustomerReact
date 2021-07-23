@@ -36,7 +36,8 @@ class ApiManager extends EventEmitter {
       .then((response) => {
         console.log("Response from api", response.status);
         if (response.status === 200) return response.json();
-        else throw new Error("Error for 404 and other");
+        else
+          throw new Error(" Error from server: " + response.status.toString());
       })
       .catch((error) => {
         this.errorsOfData.push(error);

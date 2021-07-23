@@ -3,6 +3,7 @@ import { getCustomer } from "../../../services/customers.service";
 import React from "react";
 import { Errors } from "../../common/error.component";
 import { apiManager } from "../../../services/apiManager";
+import Pagination from "../../common/pagination.component";
 
 export class ListCustomers extends React.Component {
   constructor(props) {
@@ -11,24 +12,19 @@ export class ListCustomers extends React.Component {
       listCustomers: [],
       isLoaded: false,
     };
-  }
-
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    //this.getData();
+    this.skip = "0";
+    this.limit = this.props.limit;
   }
 
   componentDidMount() {
-    console.log("from react 1 ", apiManager.errorsOfData);
-    this.getData();
+    this.getData({ skip: this.skip, limit: this.limit });
   }
 
-  getData() {
-    const query = "";
-
-    getCustomer(query, apiManager).then((data) => {
-      console.log("from react 2", apiManager.errorsOfData);
+  getData(query) {
+    getCustomer("", query).then((data) => {
+      console.log(data);
       if (data) this.setState({ listCustomers: data.docs, isLoaded: true });
-      else this.setState({ listCustomers: null, isLoaded: true });
+      //else this.setState({ listCustomers: [], isLoaded: true });
     });
   }
 
@@ -40,7 +36,7 @@ export class ListCustomers extends React.Component {
           <Errors value={apiManager.errorsOfData} />
         </div>
       );
-    } else if (this.state.isLoaded && this.state.listCustomers === null) {
+    } else if (this.state.isLoaded && this.state.listCustomers.length === 0) {
       return (
         <div>
           <h2>No Customers</h2>
@@ -73,6 +69,7 @@ export class ListCustomers extends React.Component {
               })}
             </tbody>
           </table>
+          <Pagination />
           <Errors value={apiManager.errorsOfData} />
         </React.Fragment>
       );

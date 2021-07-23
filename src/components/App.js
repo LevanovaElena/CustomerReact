@@ -42,7 +42,7 @@ export class App extends React.Component {
             <ProductsList />
           </Route>
           <Route exact path="/">
-            <ListCustomers />
+            <ListCustomers limit="5" />
           </Route>
           <Route
             path="/delete/:id"
