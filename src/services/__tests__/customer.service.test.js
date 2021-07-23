@@ -66,7 +66,6 @@ describe("Customer Service Tests", () => {
     apiManager.errorsOfData = [];
     let error = await createCustomer("Error");
     expect(error).not.toBeNull();
-    console.log(apiManager.errorsOfData);
     expect(apiManager.errorsOfData[0].message).toEqual(" Test error");
   });
 
@@ -74,14 +73,12 @@ describe("Customer Service Tests", () => {
     apiManager.errorsOfData = [];
     const errorUpdate = await updateCustomer(1, "Error");
     expect(errorUpdate).not.toBeNull();
-    console.log(apiManager.errorsOfData);
     expect(apiManager.errorsOfData.length).toEqual(1);
   });
   test("Should Get Errors Delete", async () => {
     apiManager.errorsOfData = [];
     const errorUpdate = await deleteCustomer(150);
     expect(errorUpdate).not.toBeNull();
-    console.log(apiManager.errorsOfData);
     expect(apiManager.errorsOfData[0].message).toEqual(
       "Test error from getData"
     );
@@ -91,7 +88,6 @@ describe("Customer Service Tests", () => {
     apiManager.errorsOfData = [];
     const errorUpdate = await getCustomer(150);
     expect(errorUpdate).not.toBeNull();
-    console.log(apiManager.errorsOfData);
     expect(apiManager.errorsOfData[0].message).toEqual(
       "Test error from getData"
     );

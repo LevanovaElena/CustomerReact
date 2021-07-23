@@ -34,14 +34,13 @@ class ApiManager extends EventEmitter {
     //console.log("form apiManager Get: ", url + " " + method);
     return fetch(url, { method: method })
       .then((response) => {
-        console.log("Response from api", response.status);
         if (response.status === 200) return response.json();
         else
           throw new Error(" Error from server: " + response.status.toString());
       })
       .catch((error) => {
         this.errorsOfData.push(error);
-        console.log("Error from api", this.errorsOfData);
+
         this.emit("apiError", error);
         return Promise.resolve({ error: error });
       });

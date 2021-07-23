@@ -22,7 +22,6 @@ export class ListCustomers extends React.Component {
 
   getData(query) {
     getCustomer("", query).then((data) => {
-      console.log(data);
       if (data) this.setState({ listCustomers: data.docs, isLoaded: true });
       //else this.setState({ listCustomers: [], isLoaded: true });
     });
