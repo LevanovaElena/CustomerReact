@@ -1,7 +1,7 @@
 import React from "react";
 import { Field, FieldArray } from "formik";
 
-function ListAddressesEdit({ errors, touched, fieldArrayProps, addresses }) {
+function ListAddressesEdit({ errors }) {
   return (
     <FieldArray name="addressesList">
       {(fieldArrayProps) => {

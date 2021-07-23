@@ -9,6 +9,7 @@ class DeleteCustomer extends React.Component {
     super(props);
     this.state = { isDelete: false };
     this.handleClickDelete = this.handleClickDelete.bind(this);
+    this.deleteData = this.deleteData.bind(this);
   }
 
   handleClickDelete() {
@@ -18,8 +19,11 @@ class DeleteCustomer extends React.Component {
 
   deleteData(id) {
     deleteCustomer(id).then((data) => {
-      this.setState({ isDelete: true });
-      return <Redirect to="/" />;
+      console.log(data);
+      if (data) {
+        this.setState({ isDelete: true });
+        return <Redirect to="/" />;
+      }
     });
   }
 
@@ -34,6 +38,7 @@ class DeleteCustomer extends React.Component {
               Are you sure you want to delete customer?
             </p>
             <button
+              id="btnDelete"
               className="btn btn-danger m-5"
               onClick={this.handleClickDelete}
             >

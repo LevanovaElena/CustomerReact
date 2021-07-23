@@ -36,7 +36,8 @@ export class App extends React.Component {
         <Switch>
           <Route
             path="/edit/:id"
-            render={(props) => <CustomerEdit {...props} />}
+            component={CustomerEdit}
+            /*render={(props) => <CustomerEdit {...props} />*/
           ></Route>
           <Route path="/products">
             <ProductsList />
@@ -46,7 +47,8 @@ export class App extends React.Component {
           </Route>
           <Route
             path="/delete/:id"
-            render={(props) => <DeleteCustomer {...props} />}
+            component={DeleteCustomer}
+            /*render={(props) => <DeleteCustomer {...props} />}*/
           ></Route>
         </Switch>
       </Router>
