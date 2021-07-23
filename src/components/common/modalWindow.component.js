@@ -11,7 +11,7 @@ function Modal({
   if (!visible) return null;
   return (
     <div>
-      <div className="my-modal " onClick={onClose}>
+      <div className="my-modal" onClick={onClose} id="modalWindow">
         <div className="modal-dialog" onClick={(e) => e.stopPropagation()}>
           <div className="modal-content">
             <div className="modal-header">

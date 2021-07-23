@@ -11,6 +11,7 @@ const SignupSchema = Yup.object().shape({
     message: "Phone Number is not correct",
     excludeEmptyString: true,
   }),
+  totalPurchasesAmount: Yup.number(),
   notes: Yup.array().of(
     Yup.object().shape({
       note: Yup.string()

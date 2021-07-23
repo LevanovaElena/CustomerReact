@@ -45,7 +45,7 @@ export class ListCustomers extends React.Component {
       );
     } else {
       return (
-        <React.Fragment>
+        <>
           <table className="table">
             <caption className="caption">Customers</caption>
             <thead>
@@ -71,7 +71,7 @@ export class ListCustomers extends React.Component {
           </table>
           <Pagination />
           <Errors value={apiManager.errorsOfData} />
-        </React.Fragment>
+        </>
       );
     }
   }

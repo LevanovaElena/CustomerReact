@@ -67,16 +67,14 @@ describe("List Customers Page Component", () => {
       "componentDidMount"
     );
 
-    const component = mount(<ListCustomers limit="5" />);
+    const component = shallow(<ListCustomers limit="5" />);
     await component.update();
-
     expect(componentDidMountSpy).toHaveBeenCalledTimes(1);
-    //expect(componentGetData).toBeCalledWith({ skip: "0", limit: "5" });
+    expect(componentGetData).toBeCalledWith({ skip: "0", limit: "5" });
 
     expect(component.state().isLoaded).toEqual(true);
     expect(component.state().listCustomers.length).toEqual(2);
-    await component.update();
-    const nodeTable = component.find("table");
-    expect(nodeTable.length).toEqual(5);
+    const nodeTable = component.find("CustomerRow");
+    expect(nodeTable.length).toEqual(2);
   });
 });

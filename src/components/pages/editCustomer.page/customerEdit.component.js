@@ -1,5 +1,5 @@
 import React from "react";
-import { Formik, Field, Form, FieldArray } from "formik";
+import { Formik, Field, Form } from "formik";
 import {
   getCustomer,
   updateCustomer,
@@ -27,6 +27,7 @@ class CustomerEdit extends React.Component {
     };
     this.onCloseModal = this.onCloseModal.bind(this);
     this.idCustomer = this.props.match.params.id;
+    this.onSaveClick = this.onSaveClick.bind(this);
   }
 
   onCloseModal() {
@@ -76,6 +77,14 @@ class CustomerEdit extends React.Component {
       .catch((error) => this.viewModal("Error!", "Not Found Error"));
   }
 
+  onSaveClick(values) {
+    console.log(values);
+
+    if (!this.state.isNewCustomer)
+      this.updateData(JSON.stringify(values, null, 2));
+    else this.createData(JSON.stringify(values, null, 2));
+  }
+
   render() {
     if (!this.state.isLoaded) {
       return (
@@ -88,33 +97,14 @@ class CustomerEdit extends React.Component {
       <Formik
         initialValues={this.state.customer}
         validationSchema={SignupSchema}
-        onSubmit={(values) => {
-          let isChange = this.state.isNewCustomer;
-          if (!isChange) {
-            for (let key in values) {
-              if (values[key] !== this.state.customer[key]) {
-                isChange = true;
-                break;
-              }
-            }
-          }
-          if (isChange) {
-            if (!this.state.isNewCustomer)
-              this.updateData(JSON.stringify(values, null, 2));
-            else this.createData(JSON.stringify(values, null, 2));
-          } else
-            this.viewModal(
-              "Updating customer data",
-              "Customer was not change! Make changes."
-            );
-        }}
+        onSubmit={this.onSaveClick}
       >
         {(formik) => {
-          //console.log('Formik props', formik)
+          console.log("Formik props", formik);
 
           const { errors, touched } = formik;
           return (
-            <React.Fragment>
+            <>
               <Form>
                 <div className="m-5 w-50">
                   <label htmlFor="firstName" className="form-label">
@@ -168,7 +158,7 @@ class CustomerEdit extends React.Component {
                     className="form-control"
                   />
                   {errors.phoneNumber && touched.phoneNumber ? (
-                    <div className="small text-danger">
+                    <div id="phoneNumberError" className="small text-danger">
                       {errors.phoneNumber}
                     </div>
                   ) : null}
@@ -207,7 +197,8 @@ class CustomerEdit extends React.Component {
                   <button
                     type="submit"
                     className="btn btn-success "
-                    disabled={!formik.isValid}
+                    disabled={!formik.isValid || !formik.dirty}
+                    id="btnSave"
                   >
                     Save
                   </button>
@@ -236,7 +227,7 @@ class CustomerEdit extends React.Component {
                 }
                 onClose={this.onCloseModal}
               />
-            </React.Fragment>
+            </>
           );
         }}
       </Formik>
