@@ -23,7 +23,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "test-cov": "jest --coverage"
+    "test-cov": "jest --coverage",
+    "coverage": "react-scripts test --env=jsdom --watchAll=false --coverage"
   },
   "eslintConfig": {
     "extends": [
